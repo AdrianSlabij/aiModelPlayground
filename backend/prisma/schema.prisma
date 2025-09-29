@@ -1,0 +1,39 @@
+// This file is the single source of truth for your database schema.
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// Represents a single user interaction session.
+model Session {
+  id          String       @id @default(cuid())
+  comparisons Comparison[]
+  createdAt   DateTime     @default(now())
+}
+
+// Represents a single prompt and its set of AI responses.
+model Comparison {
+  id        String     @id @default(cuid())
+  prompt    String 
+  sessionId String
+  session   Session    @relation(fields: [sessionId], references: [id])
+  responses Response[]
+  createdAt DateTime   @default(now())
+}
+
+// Represents a single AI model's response to a prompt.
+model Response {
+  id           String     @id @default(cuid())
+  model        String // e.g., "gemini-flash"
+  content      String
+  comparisonId String
+  comparison   Comparison @relation(fields: [comparisonId], references: [id])
+  createdAt    DateTime   @default(now())
+}
+

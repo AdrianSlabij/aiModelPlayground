@@ -15,11 +15,13 @@ interface SseEvent {
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  // This endpoint now uses @Sse() which defaults to GET, which is what EventSource uses.
-  @Sse('prompt')
-  streamPrompt(@Query('prompt') prompt: string): Observable<SseEvent> {
-    // We get the prompt from the URL query parameters instead of the request body.
-    return this.appService.getAiResponses(prompt);
+  
+  @Sse('prompt') // Marks this endpoint as a Server-Sent Events stream at the /prompt route.
+  streamPrompt(
+    @Query('prompt') prompt: string,
+    @Query('sessionId') sessionId: string,
+  ): Observable<SseEvent> {
+    return this.appService.getAiResponses(prompt, sessionId);
   }
 }
 
