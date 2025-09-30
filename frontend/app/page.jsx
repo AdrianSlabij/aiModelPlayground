@@ -6,6 +6,10 @@ import { Send, Loader, BrainCircuit } from 'lucide-react';
 
 const MODELS = ['gemini-flash', 'gemini-pro'];
 
+// Use the environment variable for the backend URL.
+// Provide a fallback to localhost for local development.
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
 export default function Home() {
   const [prompt, setPrompt] = useState('');
   const [sessionId, setSessionId] = useState(null);
@@ -19,7 +23,7 @@ export default function Home() {
   useEffect(() => {
     const createSession = async () => {
       try {
-        const res = await fetch('http://localhost:3001/sessions', { method: 'POST' });
+        const res = await fetch(`${API_URL}/sessions`, { method: 'POST' });
         const data = await res.json();
         setSessionId(data.id);
         console.log('Session created:', data.id);
@@ -44,7 +48,7 @@ export default function Home() {
     }
     
     // Include the sessionId in the request to the backend.
-    const eventSource = new EventSource(`http://localhost:3001/prompt?prompt=${encodeURIComponent(prompt)}&sessionId=${sessionId}`);
+    const eventSource = new EventSource(`${API_URL}/prompt?prompt=${encodeURIComponent(prompt)}&sessionId=${sessionId}`);
     eventSourceRef.current = eventSource;
 
     eventSource.onopen = () => {
@@ -127,7 +131,7 @@ export default function Home() {
             />
             <button
               type="submit"
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 transition-colors"
+              className="absolute right-3 top-1-2 -translate-y-1/2 p-2 rounded-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 transition-colors"
               disabled={isLoading || !prompt.trim() || !sessionId}
             >
               {isLoading ? <Loader className="animate-spin" /> : <Send />}
