@@ -8,7 +8,10 @@ const MODELS = ['gemini-flash', 'gemini-pro'];
 
 // Use the environment variable for the backend URL.
 // Provide a fallback to localhost for local development.
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_URL = process.env.NEXT_PUBLIC_API_URL; // || 'http://localhost:3001';
+
+// **DEBUGGING LINE ADDED BELOW**
+console.log("Connecting to API_URL:", API_URL);
 
 export default function Home() {
   const [prompt, setPrompt] = useState('');
@@ -83,7 +86,7 @@ export default function Home() {
       }));
     };
 
-    eventSource.onerror = (err) => {
+    eventSource.onerror = err => {
       console.error('EventSource failed:', err);
       
       setResponses((prev) => {
