@@ -2,7 +2,7 @@
 
 Welcome to the AI Model Playground! This is a full-stack web application designed to compare the real-time, streaming responses of multiple AI models side-by-side. Users can enter a single prompt and watch as different models generate text, allowing for a direct comparison of speed, style, and content.
 
-This project saves all prompts and responses to a database for tracking session history for each user. The two models currently being compared are `gemini-1.5-flash` and `gemini-1.5-pro`.
+This project saves all prompts and responses to a database for tracking session history for each user. The two models currently being compared are `gemini-2.5-flash` and `gemini-2.5-pro`.
 
 **Live Link:** [ai-model-playground.vercel.app](https://ai-model-playground.vercel.app/)
 
