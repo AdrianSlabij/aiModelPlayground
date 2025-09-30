@@ -1,12 +1,28 @@
-import ReactMarkdown from 'react-markdown';
-import { Bot, Loader, AlertTriangle, CheckCircle, Clock } from 'lucide-react';
+import ReactMarkdown from "react-markdown";
+import { Bot, Loader, AlertTriangle, CheckCircle, Clock } from "lucide-react";
 
 const statusInfo = {
-  idle: { text: 'Ready', icon: <Bot size={18} />, color: 'text-gray-400' },
-  waiting: { text: 'Waiting...', icon: <Clock size={18} />, color: 'text-yellow-400' },
-  generating: { text: 'Generating...', icon: <Loader size={18} className="animate-spin" />, color: 'text-blue-400' },
-  complete: { text: 'Complete', icon: <CheckCircle size={18} />, color: 'text-green-400' },
-  error: { text: 'Error', icon: <AlertTriangle size={18} />, color: 'text-red-400' },
+  idle: { text: "Ready", icon: <Bot size={18} />, color: "text-gray-400" },
+  waiting: {
+    text: "Waiting...",
+    icon: <Clock size={18} />,
+    color: "text-yellow-400",
+  },
+  generating: {
+    text: "Generating...",
+    icon: <Loader size={18} className="animate-spin" />,
+    color: "text-blue-400",
+  },
+  complete: {
+    text: "Complete",
+    icon: <CheckCircle size={18} />,
+    color: "text-green-400",
+  },
+  error: {
+    text: "Error",
+    icon: <AlertTriangle size={18} />,
+    color: "text-red-400",
+  },
 };
 
 export const ModelResponseColumn = ({ modelId, response }) => {

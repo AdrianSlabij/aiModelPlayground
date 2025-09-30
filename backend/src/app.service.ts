@@ -21,12 +21,7 @@ export class AppService {
     private readonly prisma: PrismaService,
   ) {}
 
-  /**
-   * Gets responses from AI providers, streams them to the client, and saves the result.
-   * @param prompt The user's prompt.
-   * @param sessionId The ID of the current session.
-   * @returns An observable stream of events for the frontend.
-   */
+
   getAiResponses(prompt: string, sessionId: string): Observable<SseEvent> {
     // An object to hold the full response text for saving to the database.
     const fullResponses = {
