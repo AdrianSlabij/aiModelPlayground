@@ -1,10 +1,12 @@
-AI Model Playground
+# AI Model Playground
 
 Welcome to the AI Model Playground! This is a full-stack web application designed to compare the real-time, streaming responses of multiple AI models side-by-side. Users can enter a single prompt and watch as different models generate text, allowing for a direct comparison of speed, style, and content.
 This project saves all prompts and responses, and saves it to a database for tracking session history for each user.
 The two models currently being compared against eachother are gemini-flash and gemini-pro.
 
-Features
+Link: https://ai-model-playground.vercel.app/
+
+## Features
 
     Real-Time Streaming: Watch AI models generate text chunk-by-chunk using Server-Sent Events (SSE).
 
@@ -17,7 +19,7 @@ Features
     Live Status Updates: The UI provides clear status indicators for each model (Waiting, Generating, Complete, Error).
 
 
-Tech Stack
+## Tech Stack
 
     Frontend: Next.js, React, Tailwind CSS
 
@@ -30,7 +32,7 @@ Tech Stack
     Deployments: Vercel and Render
 
 
-Getting Started
+## Getting Started
 
 Follow these instructions to get the project running on your local machine for development and testing.
 Prerequisites
@@ -44,14 +46,14 @@ Prerequisites
     A free Neon account to host your PostgreSQL database.
 
 
-Installation & Setup
+## Installation & Setup
 
     Clone the repository:
 
     git clone [https://github.com/YourUsername/ai-model-playground.git](https://github.com/YourUsername/ai-model-playground.git)
     cd ai-model-playground
 
-    Set up the Backend:
+### Set up the Backend:
 
         Navigate to the backend directory:
 
@@ -65,7 +67,7 @@ Installation & Setup
 
         cp .env.example .env
 
-        Set up your database:
+###  Set up your database:
 
             Create a new project on Neon.
 
@@ -85,7 +87,7 @@ Installation & Setup
 
         The backend will be running on http://localhost:3001.
 
-    Set up the Frontend:
+###   Set up the Frontend:
 
         Open a new terminal window.
 
@@ -104,7 +106,7 @@ Installation & Setup
         Open your browser and go to http://localhost:3000.
 
 
-    Deployment
+ ##   Deployment
     
 Backend (on Render)
 
@@ -124,7 +126,7 @@ Backend (on Render)
 
         GEMINI_API_KEY: Your Google AI API key.
 
-Frontend (on Vercel)
+## Frontend (on Vercel)
 
     Create a new project on Vercel and connect it to your GitHub repository.
 
