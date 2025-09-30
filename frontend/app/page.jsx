@@ -4,14 +4,10 @@ import { useState, useRef, useEffect } from 'react';
 import { ModelResponseColumn } from '../components/model-response-column';
 import { Send, Loader, BrainCircuit } from 'lucide-react';
 
-const MODELS = ['gemini-flash', 'gemini-pro'];
-
-// Use the environment variable for the backend URL.
-// Provide a fallback to localhost for local development.
-const API_URL = process.env.NEXT_PUBLIC_API_URL; // || 'http://localhost:3001';
-
-// **DEBUGGING LINE ADDED BELOW**
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 console.log("Connecting to API_URL:", API_URL);
+
+const MODELS = ['gemini-flash', 'gemini-pro'];
 
 export default function Home() {
   const [prompt, setPrompt] = useState('');
@@ -22,7 +18,6 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const eventSourceRef = useRef(null);
 
-  // This effect runs once when the component mounts to create a new session.
   useEffect(() => {
     const createSession = async () => {
       try {
@@ -50,7 +45,6 @@ export default function Home() {
       eventSourceRef.current.close();
     }
     
-    // Include the sessionId in the request to the backend.
     const eventSource = new EventSource(`${API_URL}/prompt?prompt=${encodeURIComponent(prompt)}&sessionId=${sessionId}`);
     eventSourceRef.current = eventSource;
 
@@ -86,7 +80,7 @@ export default function Home() {
       }));
     };
 
-    eventSource.onerror = err => {
+    eventSource.onerror = (err) => {
       console.error('EventSource failed:', err);
       
       setResponses((prev) => {
@@ -117,12 +111,14 @@ export default function Home() {
       </div>
       <footer className="p-4 border-t border-gray-700">
         <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
+          {/* This parent div needs the "relative" class */}
           <div className="relative">
             <textarea
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               placeholder={sessionId ? "Enter your prompt here..." : "Creating session..."}
               rows={1}
+              // The "pr-12" (padding-right) class prevents text from going under the button
               className="w-full bg-gray-800 border border-gray-600 rounded-lg p-3 pr-12 text-lg resize-none focus:ring-2 focus:ring-blue-500 focus:outline-none"
               disabled={isLoading || !sessionId}
               onKeyDown={(e) => {
@@ -132,9 +128,10 @@ export default function Home() {
                 }
               }}
             />
+            {/* These classes position the button absolutely within the relative parent */}
             <button
               type="submit"
-              className="absolute right-3 top-1-2 -translate-y-1/2 p-2 rounded-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 transition-colors"
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 transition-colors"
               disabled={isLoading || !prompt.trim() || !sessionId}
             >
               {isLoading ? <Loader className="animate-spin" /> : <Send />}
