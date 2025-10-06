@@ -8,7 +8,7 @@ This project saves all prompts and responses to a database for tracking session 
 
 ---
 
-## ✨ Features
+## Features
 
 * **Real-Time Streaming:** Watch AI models generate text chunk-by-chunk using Server-Sent Events (SSE).
 * **Side-by-Side Comparison:** A clean, two-column UI to directly compare responses from different models.
@@ -18,7 +18,7 @@ This project saves all prompts and responses to a database for tracking session 
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 * **Frontend:** Next.js, React, Tailwind CSS
 * **Backend:** NestJS, TypeScript
@@ -28,7 +28,7 @@ This project saves all prompts and responses to a database for tracking session 
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 Follow these instructions to get the project running on your local machine for development and testing.
 
