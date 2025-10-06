@@ -1,4 +1,4 @@
-# AI Model Playground
+ # AI Model Playground
 
 Welcome to the AI Model Playground! This is a full-stack web application designed to compare the real-time, streaming responses of multiple AI models side-by-side. Users can enter a single prompt and watch as different models generate text, allowing for a direct comparison of speed, style, and content.
 
@@ -89,7 +89,7 @@ Follow these instructions to get the project running on your local machine for d
 
 ---
 
-## ☁️ Deployment
+## Deployment
 
 ### Backend (on Render)
 
